@@ -1,3 +1,13 @@
+# Copy node form the frontend
+FROM node as frontend
+
+# Add sources into /app/
+WORKDIR /app/frontend/
+ADD frontend .
+
+RUN yarn && yarn build
+
+# Start the nginx container
 FROM python:3.6-alpine
 
 # Install nginx and configuration
@@ -17,10 +27,11 @@ RUN mkdir -p /var/www/static/ \
 # /entrypoint.sh
 ADD docker/entrypoint.sh /entrypoint.sh
 
-# Install Django App and setup the setting module
+# Install Django App, configure settings and copy over djano app
 ADD manage.py /app/
 ADD datasets/ /app/datasets/
 ADD mathdb/ /app/mathdb/
+COPY --from=frontend /app/static/frontend /app/static/frontend
 
 ENV DJANGO_SETTINGS_MODULE "mathdb.docker_settings"
 

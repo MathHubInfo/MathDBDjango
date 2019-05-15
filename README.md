@@ -8,7 +8,7 @@ The entire application can be run locally for a development setup and via [Docke
 
 ### Local Development Instance
 
-To run a local instance, install Python 3.5 or newer, then clone this repository and afterwards set up a [virtal environment](https://docs.python.org/3/library/venv.html) as follows:
+To run a local instance, first install Python 3.5 or newer, then clone this repository and afterwards set up a [virtal environment](https://docs.python.org/3/library/venv.html) as follows:
 
 ```bash
 # Create and activate venv in venv/ 
@@ -22,7 +22,21 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-By default a local instance is then configured to store data in a local `db.sqlite3` database. 
+Next, you will have to build the frontend, which is written in Javascript using React. 
+It can be found in the frontend/ folder and can be compiled via:
+
+```bash
+# cd into the frontend directory
+cd frontend
+
+# install dependencies
+yarn
+
+# build it, and place it into django's staticfiles directory
+yarn build
+```
+
+A local django instance is configured to store data in a local `db.sqlite3` database by default. 
 Thus one can simply run the application like any other Django App using:
 
 ```bash

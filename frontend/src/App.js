@@ -5,7 +5,7 @@ import Tabs from './Tabs.js';
 import './App.css';
 import newState from './data.js';
 
-const api = process.env.REACT_APP_MATHDBAPI || (window.location.hostname === "localhost" ? "http://localhost:8000" : "https://api.mathdb.mathhub.info");
+const api = process.env.REACT_APP_MATHDBAPI || '';
 
 class App extends Component {
     

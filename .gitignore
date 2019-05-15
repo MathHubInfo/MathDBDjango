@@ -109,3 +109,4 @@ local_settings.py
 # Frontend
 frontend/build
 frontend/node_modules
+static/frontend

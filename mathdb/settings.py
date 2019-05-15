@@ -73,6 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mathdb.wsgi.application'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
