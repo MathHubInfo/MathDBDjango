@@ -1,0 +1,98 @@
+{
+    "general": ["index", "id", "name", "references", "object_type", "comment"],
+    "size": ["index", "id", "name", "number_of_objects", "number_of_datasets", "number_of_contributors", "time_to_generate"],
+    "FAIR": ["index", "id", "name", "FAIR_summary", "findable", "accessible", "interoperable", "reusable"],
+    "properties": ["index", "id", "name", "collaborative", "decentralised", "irredundant", "searchable", "selfexplaining"],
+    "data": {
+        "collaborative": {
+            "Header": "Collaborative",
+            "style": { "whiteSpace": "unset" }
+        },
+        "comment": {
+            "Header": "Comment",
+            "style": { "whiteSpace": "unset" }
+        },
+        "complete": {
+            "Header": "Complete"
+        },
+        "FAIR_summary": {
+            "Header": "Summary",
+            "style": { "whiteSpace": "unset" }
+        },
+        "findable": {
+            "Header": "F",
+            "style": { "textAlign": "center" },
+            "maxWidth": 70
+        },
+        "accessible": {
+            "Header": "A",
+            "style": { "textAlign": "center" },
+            "maxWidth": 70
+        },
+        "interoperable": {
+            "Header": "I",
+            "style": { "textAlign": "center" },
+            "maxWidth": 70
+        },
+        "reusable": {
+            "Header": "R",
+            "style": { "textAlign": "center" },
+            "maxWidth": 70
+        },
+        "id": {
+            "Header": "Id",
+            "maxWidth": 40,
+            "style": { "textAlign": "right" }
+        },
+        "index": {
+            "Header": "#",
+            "maxWidth": 30,
+            "className": "text-muted small",
+            "style": { "textAlign": "right" }
+        },
+        "irredundant": {
+            "Header": "Irredundant?",
+            "style": { "whiteSpace": "unset" }
+        },
+        "name": {
+            "Header": "Name",
+            "style": { "whiteSpace": "unset" }
+        },
+        "number_of_objects": {
+            "Header": "# of objects",
+            "maxWidth": 150
+        },
+        "number_of_datasets": {
+            "Header": "# of datasets",
+            "maxWidth": 150
+        },
+        "number_of_contributors": {
+            "Header": "# of contributors",
+            "maxWidth": 150
+        },
+        "object_type": {
+            "Header": "Type of objects",
+            "maxWidth": 150,
+            "style": { "whiteSpace": "unset" }
+        },
+        "provenance": {
+            "Header": "Provenance"
+        },
+        "references": {
+            "Header": "References",
+            "maxWidth": 150
+        },
+        "searchable": {
+            "Header": "Searchable",
+            "style": { "whiteSpace": "unset" }
+        },
+        "selfexplaining": {
+            "Header": "Self-explaining",
+            "style": { "whiteSpace": "unset" }
+        },
+        "time_to_generate": {
+            "Header": "Time to generate",
+            "maxWidth": 150
+        }
+    }
+}
