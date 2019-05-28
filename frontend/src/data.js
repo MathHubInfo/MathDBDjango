@@ -78,7 +78,7 @@ function newState(columns, data) {
         var o = {
             index: i + 1,
             id: c.id,
-            name: {text: c.name, url: c.url, authors: []},
+            name: {text: c.name, url: c.url, authors: c.authors},
             findable: {id: c.id, value: c.findable},
             accessible: {id: c.id, value: c.accessible},
             interoperable: {id: c.id, value: c.interoperable},

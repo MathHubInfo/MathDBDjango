@@ -14,12 +14,13 @@ export default class Collection extends Component {
 }
 
 function Author(props) {
-    const fullname = props.data.name + " " + props.data.surname
+    const fullname = props.data.givenName + " " + props.data.familyName
     if (!(props.data.url === null)) return <a href={props.data.url} className="author text-muted">{fullname}</a>;
     else return <span className="author text-muted">{fullname}</span>
 }
 
 function Authors(props) {
+    console.log(props);
     if ((typeof props.data !== 'undefined') && props.show) return(
         <React.Fragment>
             {props.data.map((a, i) => <React.Fragment key={i}>{!!i && ", "} <Author data={a} /></React.Fragment> )}
