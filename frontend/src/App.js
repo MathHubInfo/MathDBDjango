@@ -16,6 +16,8 @@ class App extends Component {
         
         this.update = (selectedColumns) => {
             const that = this;
+            // TODO: pagination
+            // the following will only show the first page of Django results;
             fetch(api + '/collections.json').then(function(response) {
                 return response.json();
             }).then(function(data) {

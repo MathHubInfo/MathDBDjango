@@ -5,7 +5,7 @@ export default class References extends Component {
     
     render() {
         if (typeof this.props.value === "undefined") return null;
-        const refs = this.props.value.map((item) => (<Reference key={item.id} reference={item.id} value={item.reference} />));
+        const refs = this.props.value.map((item, i) => (<Reference key={i} reference={i} value={item} />));
         return(
             <React.Fragment>
                 {refs}
@@ -29,27 +29,27 @@ class Reference extends Component {
 
     render() {
         var icon = "icon-sphere";
-        var url = this.props.value;
-        var arr = this.props.value.split(":")
+        var url = this.props.value.value;
+        var arr = this.props.value.type;
         var tooltip = "Website";
-        if (arr[0] === "doi") {
+        if (arr === "doi") {
             icon = "icon-doi";
-            url = "https://doi.org/" + arr[1];
+            url = "https://doi.org/" + url;
             tooltip = "DOI: Digital Object Identifier";
         }
-        if (arr[0] === "rg") {
+        if (arr === "rg") {
             icon = "icon-researchgate";
-            url = "https://www.researchgate.net/publication/" + arr[1];
+            url = "https://www.researchgate.net/publication/" + url;
             tooltip = "ResearchGate";
         }
-        if (arr[0] === "arxiv") {
+        if (arr === "arxiv") {
             icon = "icon-arxiv";
-            url = "https://arxiv.org/abs/" + arr[1];
+            url = "https://arxiv.org/abs/" + url;
             tooltip = "Arxiv";
         }
-
-        if (arr[0] === "ISBN") return(
-            <span className="isbn">{this.props.value}</span>
+        
+        if (arr === "isbn") return(
+            <span className="isbn">{url}</span>
         );
         else return (
             <React.Fragment>

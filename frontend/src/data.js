@@ -83,7 +83,7 @@ function newState(columns, data) {
             accessible: {id: c.id, value: c.accessible},
             interoperable: {id: c.id, value: c.interoperable},
             reusable: {id: c.id, value: c.reusable},
-            references: []
+            references: c.references
         };
         copy(c, o, unmodifiedFields);
         return o;
