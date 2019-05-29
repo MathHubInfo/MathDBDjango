@@ -30,13 +30,15 @@ class Reference(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=100, unique=True, help_text="Tag name")
+    type = models.CharField(max_length=10, null=True, blank=True, help_text="Tag type")
 
     def __str__(self):
         return self.name
 
     def json(self):
         return {
-            'name': self.name
+            'name': self.name,
+            'type': self.type
         }
 
 class Collection(models.Model):

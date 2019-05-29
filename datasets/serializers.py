@@ -14,7 +14,7 @@ class ReferenceSerializer(serializers.ModelSerializer):
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ('name', )
+        fields = ('name', 'type')
 
 class CollectionSerializer(serializers.ModelSerializer):
     authors = AuthorSerializer(read_only=True, many=True)
