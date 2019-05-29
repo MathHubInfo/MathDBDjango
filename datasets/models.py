@@ -33,8 +33,8 @@ class Collection(models.Model):
     name = models.CharField(max_length=200, help_text="The name of the collection")
     description = models.CharField(null=True, blank=True, max_length=200, help_text="The description of the collection")
     url = models.URLField(null=True, blank=True, help_text="URL of the collection's website")
-    authors = models.ManyToManyField(Author)
-    references = models.ManyToManyField(Reference)
+    authors = models.ManyToManyField(Author, blank=True)
+    references = models.ManyToManyField(Reference, blank=True)
     objectType = models.CharField(null=True, blank=True, max_length=200, help_text="The type of mathematical objects in the collection")
     comment = models.TextField(null=True, blank=True, help_text="Any other information about the collection")
 
