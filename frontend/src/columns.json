@@ -84,7 +84,8 @@
         },
         "tags": {
             "Header": "Tags",
-            "maxWidth": 150
+            "maxWidth": 150,
+            "style": { "whiteSpace": "unset" }
         },
         "searchable": {
             "Header": "Searchable",
