@@ -2,6 +2,7 @@ import React from 'react';
 import Collection from './Collection.js';
 import Diagram from './Diagram.js';
 import References from './References.js';
+import Tags from './Tags.js';
 import cols from './columns.json';
 
 const boolString = (value) => {
@@ -19,13 +20,12 @@ const copy = (from, to, fields) => {
 
 const unmodifiedFields = [
     "comment",
-    "object_type",
     "number_of_objects", "number_of_datasets", "number_of_contributors", "size", "time_to_generate",
     "provenance", "complete", "irredundant", "collaborative",  "decentralised", "searchable", "selfexplaining",
     "FAIR_summary"
 ]
 
-function newState(columns, data) {
+export default function newState(columns, data) {
     
     const columnProps = {
         citable: {
@@ -45,6 +45,9 @@ function newState(columns, data) {
         }, 
         references: {
             Cell: props => <References value={props.value} />
+        },
+        tags: {
+            Cell: props => <Tags value={props.value} />
         },
         findable: {
             Cell: props => <Diagram type="F" value={props.value.value} id={props.value.id} />
@@ -83,7 +86,8 @@ function newState(columns, data) {
             accessible: {id: c.id, value: c.accessible},
             interoperable: {id: c.id, value: c.interoperable},
             reusable: {id: c.id, value: c.reusable},
-            references: c.references
+            references: c.references,
+            tags: c.tags
         };
         copy(c, o, unmodifiedFields);
         return o;
@@ -91,5 +95,3 @@ function newState(columns, data) {
     
     return result;    
 }
-
-export default newState;

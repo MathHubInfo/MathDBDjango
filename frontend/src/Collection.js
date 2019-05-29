@@ -20,7 +20,6 @@ function Author(props) {
 }
 
 function Authors(props) {
-    console.log(props);
     if ((typeof props.data !== 'undefined') && props.show) return(
         <React.Fragment>
             {props.data.map((a, i) => <React.Fragment key={i}>{!!i && ", "} <Author data={a} /></React.Fragment> )}
