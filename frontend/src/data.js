@@ -86,10 +86,11 @@ export default function newState(columns, data) {
             accessible: {id: c.id, value: c.accessible},
             interoperable: {id: c.id, value: c.interoperable},
             reusable: {id: c.id, value: c.reusable},
-            references: c.references,
+            references: { id: c.id, references: c.references},
             tags: c.tags
         };
         copy(c, o, unmodifiedFields);
+        console.log(o);
         return o;
     })
     

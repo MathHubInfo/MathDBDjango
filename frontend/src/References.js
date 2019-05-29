@@ -4,8 +4,11 @@ import { Tooltip } from 'reactstrap';
 export default class References extends Component {
     
     render() {
-        if (typeof this.props.value === "undefined") return null;
-        const refs = this.props.value.map((item, i) => (<Reference key={i} reference={i} value={item} />));
+        console.log(this.props)
+        const cId = this.props.value.id;
+        const refList = this.props.value.references;
+        if (typeof refList === "undefined") return null;
+        const refs = refList.map((item, i) => (<Reference key={i} reference={cId + "-" + i} value={item} />));
         return(
             <React.Fragment>
                 {refs}
