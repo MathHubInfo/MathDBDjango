@@ -23,7 +23,7 @@ class CollectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Collection
-        fields = ('name', 'description', 'url', 'authors', 'references', 'tags', 'objectType', 'comment',
+        fields = ('name', 'description', 'url', 'authors', 'references', 'tags', 'comment',
                   'numberOfDatasets', 'numberOfObjects', 'numberOfContributors',
                   'sizeCompressed', 'sizeUncompressed', 'timeToGenerate',
                   'provenance', 'complete', 'irredundant', 'collaborative', 'searchable', 'selfExplaining', 'summaryOfFAIR',
