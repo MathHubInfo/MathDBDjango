@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Author, Collection, Reference
+from .models import Author, Collection, Reference, Tag
 
 @admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
     list_display = ('name', 'url')
-    search_fields = ('name', 'url', 'authors__givenName', 'authors__familyName')
+    search_fields = ('name', 'url', 'authors__givenName', 'authors__familyName', 'tags__name')
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
@@ -15,3 +15,8 @@ class AuthorAdmin(admin.ModelAdmin):
 class ReferenceAdmin(admin.ModelAdmin):
     list_display = ('type', 'value')
     search_fields = ('type', 'value')
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+    search_fields = ('name', )

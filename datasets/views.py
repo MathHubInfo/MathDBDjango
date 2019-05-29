@@ -7,8 +7,8 @@ from django.views.static import was_modified_since
 
 from rest_framework import viewsets
 
-from .models import Author, Collection, Reference
-from .serializers import AuthorSerializer, CollectionSerializer, ReferenceSerializer
+from .models import Author, Collection, Reference, Tag
+from .serializers import AuthorSerializer, CollectionSerializer, ReferenceSerializer, TagSerializer
 
 import mimetypes
 import os
@@ -48,6 +48,13 @@ class ReferenceViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = Reference.objects.all()
     serializer_class = ReferenceSerializer
+
+class TagViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint that allows tags to be viewed or edited
+    """
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
 
 class CollectionViewSet(viewsets.ReadOnlyModelViewSet):
     """

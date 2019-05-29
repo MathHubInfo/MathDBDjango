@@ -28,6 +28,17 @@ class Reference(models.Model):
             'value': self.value
         }
 
+class Tag(models.Model):
+    name = models.CharField(max_length=100, unique=True, help_text="Tag name")
+
+    def __str__(self):
+        return self.name
+
+    def json(self):
+        return {
+            'name': self.name
+        }
+
 class Collection(models.Model):
 
     name = models.CharField(max_length=200, help_text="The name of the collection")
@@ -35,6 +46,7 @@ class Collection(models.Model):
     url = models.URLField(null=True, blank=True, help_text="URL of the collection's website")
     authors = models.ManyToManyField(Author, blank=True)
     references = models.ManyToManyField(Reference, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True)
     objectType = models.CharField(null=True, blank=True, max_length=200, help_text="The type of mathematical objects in the collection")
     comment = models.TextField(null=True, blank=True, help_text="Any other information about the collection")
 
@@ -70,6 +82,7 @@ class Collection(models.Model):
             'url': self.url,
             'authors': [a.json() for a in self.authors.all()],
             'references': [r.json() for r in self.references.all()],
+            'tags': [t.json() for t in self.tags.all()],
             'objectType': self.objectType,
             'comment': self.comment,
 
