@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Badge } from 'reactstrap';
 
 function Tag(props) {
-    return <Badge color="light" pill>{props.label}</Badge>
+    var style = "light";
+    if (props.type == "MO") style = "info";
+    return <Badge color={style} pill>{props.label}</Badge>
 }
 
 export default function Tags(props) {
