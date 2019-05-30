@@ -4,6 +4,7 @@ import Diagram from './Diagram.js';
 import References from './References.js';
 import Tags from './Tags.js';
 import cols from './columns.json';
+import { compareObjects } from './util.js';
 
 const boolString = (value) => {
     if (value === null) return "";
@@ -35,7 +36,8 @@ export default function newState(columns, data) {
             Cell: props => {boolString(props.value)}
         },
         name: {
-            Cell: props => <Collection show={columns === "general"} text={props.value.text} url={props.value.url} authors={props.value.authors} />
+            Cell: props => <Collection show={columns === "general"} text={props.value.text} url={props.value.url} authors={props.value.authors} />,
+            sortMethod: (a, b) => compareObjects(a, b, (o) => o.text.toLowerCase())
         },
         number_of_objects: {
             Cell: props => {
@@ -90,7 +92,6 @@ export default function newState(columns, data) {
             tags: c.tags
         };
         copy(c, o, unmodifiedFields);
-        console.log(o);
         return o;
     })
     

@@ -4,7 +4,6 @@ import { Tooltip } from 'reactstrap';
 export default class References extends Component {
     
     render() {
-        console.log(this.props)
         const cId = this.props.value.id;
         const refList = this.props.value.references;
         if (typeof refList === "undefined") return null;
