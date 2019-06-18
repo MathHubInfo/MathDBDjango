@@ -21,9 +21,9 @@ const copy = (from, to, fields) => {
 
 const unmodifiedFields = [
     "comment",
-    "number_of_objects", "number_of_datasets", "number_of_contributors", "size", "time_to_generate",
+    "numberOfObjects", "numberOfDatasets", "numberOfContributors", "size", "timeToGenerate",
     "provenance", "complete", "irredundant", "collaborative",  "decentralised", "searchable", "selfexplaining",
-    "FAIR_summary"
+    "summaryOfFAIR"
 ]
 
 export default function newState(columns, data) {

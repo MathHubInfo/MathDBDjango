@@ -1,7 +1,7 @@
 {
     "general": ["index", "id", "name", "references", "tags", "comment"],
-    "size": ["index", "id", "name", "number_of_objects", "number_of_datasets", "number_of_contributors", "time_to_generate"],
-    "FAIR": ["index", "id", "name", "FAIR_summary", "findable", "accessible", "interoperable", "reusable"],
+    "size": ["index", "id", "name", "numberOfObjects", "numberOfDatasets", "numberOfContributors", "timeToGenerate"],
+    "FAIR": ["index", "id", "name", "summaryOfFAIR", "findable", "accessible", "interoperable", "reusable"],
     "properties": ["index", "id", "name", "collaborative", "decentralised", "irredundant", "searchable", "selfexplaining"],
     "data": {
         "collaborative": {
@@ -15,7 +15,7 @@
         "complete": {
             "Header": "Complete"
         },
-        "FAIR_summary": {
+        "summaryOfFAIR": {
             "Header": "Summary",
             "style": { "whiteSpace": "unset" }
         },
@@ -58,19 +58,19 @@
             "Header": "Name",
             "style": { "whiteSpace": "unset" }
         },
-        "number_of_objects": {
+        "numberOfObjects": {
             "Header": "# of objects",
             "maxWidth": 150
         },
-        "number_of_datasets": {
+        "numberOfDatasets": {
             "Header": "# of datasets",
             "maxWidth": 150
         },
-        "number_of_contributors": {
+        "numberOfContributors": {
             "Header": "# of contributors",
             "maxWidth": 150
         },
-        "object_type": {
+        "objectType": {
             "Header": "Type of objects",
             "maxWidth": 150,
             "style": { "whiteSpace": "unset" }
@@ -95,7 +95,7 @@
             "Header": "Self-explaining",
             "style": { "whiteSpace": "unset" }
         },
-        "time_to_generate": {
+        "timeToGenerate": {
             "Header": "Time to generate",
             "maxWidth": 150
         }
