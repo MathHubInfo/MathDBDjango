@@ -19,15 +19,15 @@ class HomeView(View):
     source = 'frontend/index.html'
 
     def get(self, request, *args, **kwargs):
-        path = finders.find(self.source)
-        if not os.path.exists(path):
+        path = finders.find(self.source or self.__class__.source)
+        if path is None or not os.path.exists(path):
             raise Http404('"%s" does not exist' % path)
         stat = os.stat(path)
         mimetype, encoding = mimetypes.guess_type(path)
         mimetype = mimetype or 'application/octet-stream'
         if not was_modified_since(request.META.get('HTTP_IF_MODIFIED_SINCE'),
                                   stat.st_mtime, stat.st_size):
-            return HttpResponseNotModified(mimetype-mimetype)
+            return HttpResponseNotModified()
         response = HttpResponse(open(path, 'rb').read(), content_type=mimetype)
         response['Last-Modified'] = http_date(stat.st_mtime)
         response['Content-Length'] = stat.st_size
