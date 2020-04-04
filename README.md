@@ -1,4 +1,5 @@
 # MathDB Django
+[![Build Status](https://travis-ci.com/MathHubInfo/MathDBDjango.svg?branch=master)](https://travis-ci.com/MathHubInfo/MathDBDjango)
 
 A new MathDB Django Backend
 
