@@ -12,6 +12,7 @@ script:
 - docker run -d --name=smoke -e DJANGO_SECRET_KEY=smoke -p 8080:80 mathhub/mathdb
 - sleep 10
 - curl --fail --show-error http://localhost:8080/ > /dev/null
+- curl --fail --show-error http://localhost:8080/api/collections.json > /dev/null
 
 after_script:
 - docker stop smoke
