@@ -13,28 +13,6 @@ from .serializers import AuthorSerializer, CollectionSerializer, ReferenceSerial
 import mimetypes
 import os
 
-
-class HomeView(View):
-    http_method_names = ['get']
-    source = 'frontend/index.html'
-
-    def get(self, request, *args, **kwargs):
-        path = finders.find(self.source or self.__class__.source)
-        if path is None or not os.path.exists(path):
-            raise Http404('"%s" does not exist' % path)
-        stat = os.stat(path)
-        mimetype, encoding = mimetypes.guess_type(path)
-        mimetype = mimetype or 'application/octet-stream'
-        if not was_modified_since(request.META.get('HTTP_IF_MODIFIED_SINCE'),
-                                  stat.st_mtime, stat.st_size):
-            return HttpResponseNotModified()
-        response = HttpResponse(open(path, 'rb').read(), content_type=mimetype)
-        response['Last-Modified'] = http_date(stat.st_mtime)
-        response['Content-Length'] = stat.st_size
-        if encoding:
-            response['Content-Encoding'] = encoding
-        return response
-
 class AuthorViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows authors to be viewed or edited

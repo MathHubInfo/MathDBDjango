@@ -26,7 +26,6 @@ router.register(r'references', views.ReferenceViewSet)
 router.register(r'collections', views.CollectionViewSet)
 
 urlpatterns = [
-    url(r'^', include('datasets.urls')),
-    path('', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
 ]

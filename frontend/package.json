@@ -15,11 +15,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf ../static/frontend && mkdir -p ../static/ && mv build ../static/frontend",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "homepage": "/static/frontend/",
   "eslintConfig": {
     "extends": "react-app"
   },

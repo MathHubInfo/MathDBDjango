@@ -5,7 +5,7 @@ import Tabs from './Tabs.js';
 import './App.css';
 import newState from './data.js';
 
-const api = process.env.REACT_APP_MATHDBAPI || '';
+const api = '/api/';
 
 class App extends Component {
     
@@ -18,7 +18,7 @@ class App extends Component {
             const that = this;
             // TODO: pagination
             // the following will only show the first page of Django results;
-            fetch(api + '/collections.json').then(function(response) {
+            fetch(api + 'collections.json').then(function(response) {
                 return response.json();
             }).then(function(data) {
                 that.setState(newState(selectedColumns, data));

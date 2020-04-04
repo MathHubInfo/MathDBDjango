@@ -1,37 +1,43 @@
 # Copy node form the frontend
-FROM node as frontend
+FROM node:12 as frontend
 
 # Add sources into /app/
 WORKDIR /app/frontend/
-ADD frontend .
+ADD frontend /app/frontend/
 
-RUN yarn && yarn build
+RUN yarn
+RUN yarn build
 
 # Start the nginx container
-FROM python:3.6-alpine
+FROM python:3.8-alpine
 
-# Install nginx and configuration
-RUN apk add --no-cache nginx \
-    && mkdir -p /run/nginx/
-ADD docker/django.conf /etc/nginx/django.conf
+# Install binary python dependencies
+RUN apk add --no-cache \
+    build-base \
+    mailcap \
+    libxslt-dev \
+    linux-headers \
+    pcre-dev \
+    python3-dev
 
 # Add requirements and install dependencies
 ADD requirements.txt /app/
+ADD requirements-prod.txt /app/
 WORKDIR /app/
 
 # Add the entrypoint and add configuration
 RUN mkdir -p /var/www/static/ \
     && pip install -r requirements.txt \
-    && pip install gunicorn==19.7
-
-# /entrypoint.sh
-ADD docker/entrypoint.sh /entrypoint.sh
+    && pip install -r requirements-prod.txt
 
 # Install Django App, configure settings and copy over djano app
 ADD manage.py /app/
+ADD static/ /app/static/
 ADD datasets/ /app/datasets/
 ADD mathdb/ /app/mathdb/
-COPY --from=frontend /app/static/frontend /app/static/frontend
+ADD docker/ /app/docker/
+
+COPY --from=frontend /app/frontend/build/ /app/frontend/build/
 
 ENV DJANGO_SETTINGS_MODULE "mathdb.docker_settings"
 
@@ -56,4 +62,6 @@ ENV DJANGO_DB_PORT ""
 VOLUME /data/
 EXPOSE 80
 
-ENTRYPOINT ["/entrypoint.sh"]
+RUN DJANGO_SECRET_KEY=build python manage.py collectstatic
+ENTRYPOINT ["/app/docker/entrypoint.sh"]
+CMD ["uwsgi", "--ini", "/app/docker/uwsgi.ini"]

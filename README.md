@@ -8,7 +8,7 @@ The entire application can be run locally for a development setup and via [Docke
 
 ### Local Development Instance
 
-To run a local instance, first install Python 3.5 or newer, then clone this repository and afterwards set up a [virtal environment](https://docs.python.org/3/library/venv.html) as follows:
+To run a local instance, first install Python 3.6 or newer, then clone this repository and afterwards set up a [virtual environment](https://docs.python.org/3/library/venv.html) as follows:
 
 ```bash
 # Create and activate venv in venv/ 
@@ -32,7 +32,7 @@ cd frontend
 # install dependencies
 yarn
 
-# build it, and place it into django's staticfiles directory
+# build it
 yarn build
 ```
 
@@ -42,6 +42,17 @@ Thus one can simply run the application like any other Django App using:
 ```bash
 python manage.py runserver
 ```
+
+This will only start the API server. 
+To start the frontend component, use:
+
+
+```bash
+cd frontend
+yarn start
+```
+
+This will open the development server (which automatically reloads) in a background window. 
 
 In principle the settings can be found in [`settings.py`](mathdb/settings.py). 
 To enable easier debugging, it is configured to automatically import settings from a file called `mathdb/local_settings.py`.
