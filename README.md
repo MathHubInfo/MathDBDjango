@@ -62,6 +62,7 @@ The file is also `.gitignore`d and should not be comitted.
 ### Deployment via Docker
 
 It is also possible to deploy this application via [Docker](https://www.docker.com/). 
+In particular, an automated build [mathhub/mathdb](https://hub.docker.com/r/mathhub/mathdb) is available. 
 
 For Docker purposes the configuration file `mathdb/docker_settings.py` is used.  
 By default, it also uses a local sqlite database. 

@@ -1,0 +1,17 @@
+language: python
+os: linux
+services:
+    - docker
+      
+install:
+- docker pull node:12
+- docker pull python:3.8-alpine
+
+script:
+- docker build -t mathhub/mathdb .
+- docker run -d --name=smoke -e DJANGO_SECRET_KEY=smoke -p 8080:80 mathhub/mathdb
+- sleep 10
+- curl --fail --show-error http://localhost:8080/ > /dev/null
+
+after_script:
+- docker stop smoke
