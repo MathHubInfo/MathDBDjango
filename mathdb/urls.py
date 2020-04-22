@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from django.conf import settings
+
+
 from django.urls import include, path
 from rest_framework import routers
 from datasets import views
@@ -29,3 +32,16 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
 ]
+
+# for debugging and testing
+if settings.DEBUG or settings.IN_TEST_MODE:
+    from os.path import dirname, join
+    from django.views.static import serve as dir_serve
+    from django.views.static import serve as file_serve
+    from django.urls import re_path
+
+    WEBPACK_BUILD_PATH = join(dirname(__file__), '..', 'frontend', 'build')
+    urlpatterns += [
+        url(r'^$', file_serve, kwargs={'path': 'index.html', 'document_root': WEBPACK_BUILD_PATH}, name='root'),
+        re_path(r'^(?P<path>.*)$', dir_serve, kwargs={'document_root': WEBPACK_BUILD_PATH}),
+    ]

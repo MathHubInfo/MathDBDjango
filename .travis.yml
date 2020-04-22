@@ -1,18 +1,43 @@
 language: python
 os: linux
-services:
-    - docker
-      
-install:
-- docker pull node:12
-- docker pull python:3.8-alpine
+python: 3.8
 
-script:
-- docker build -t mathhub/mathdb .
-- docker run -d --name=smoke -e DJANGO_SECRET_KEY=smoke -p 8080:80 mathhub/mathdb
-- sleep 10
-- curl --fail --show-error http://localhost:8080/ > /dev/null
-- curl --fail --show-error http://localhost:8080/api/collections.json > /dev/null
+jobs:
+  include:
+    - name: "Build Test"
+      addons:
+        firefox: latest
+      before_install:
+        - nvm install 12
+        - nvm use 12
+      install:
+        - cd frontend; yarn; cd ..
+        - pip install -r requirements.txt
+        - pip install -r requirements-dev.txt
+        - python manage.py migrate
+      env:
+        - SELENIUM_WEBDRIVER=firefox
+      before_script:
+        - export GECKODRIVER_VERSION=`curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep "tag_name" | cut -d '"' -f 4`
+        - wget https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
+        - mkdir geckodriver
+        - tar -xzf geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz -C geckodriver
+        - export PATH=$PATH:$PWD/geckodriver
+      script:
+        - cd frontend; yarn build; cd ..
+        - pytest
 
-after_script:
-- docker stop smoke
+    - name: "Docker Smoketest"
+      services:
+        - docker  
+      install:
+        - docker pull node:12
+        - docker pull python:3.8-alpine
+      script:
+        - docker build -t mathhub/mathdb .
+        - docker run -d --name=smoke -e DJANGO_SECRET_KEY=smoke -p 8080:80 mathhub/mathdb
+        - sleep 10
+        - curl --fail --show-error http://localhost:8080/ > /dev/null
+        - curl --fail --show-error http://localhost:8080/api/collections.json > /dev/null
+      after_script:
+        - docker stop smoke

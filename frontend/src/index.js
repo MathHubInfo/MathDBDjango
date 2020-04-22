@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+// static css and things
+import './css/index.css';
+import './css/icons.css'
+import './css/react-table.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
