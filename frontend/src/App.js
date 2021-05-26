@@ -37,8 +37,8 @@ class App extends Component {
                 <Row>
                     <Col>
                         <h1>Catalogue of Mathematical Datasets</h1>
-                        <p>See the <a href="https://github.com/MathHubInfo/Documentation/wiki/Math-Databases">wiki</a> for the non-tabulated contents as well as for more information.</p>
-                        <p>The information in this catalogue is incomplete, please <a href="https://kwarc.info/people/kbercic/">help me fill it in</a>.</p>
+                        <p>See the <a href="https://docs.mathhub.info/data/Math-Databases">MathHub Documentation</a> for the non-tabulated contents as well as for more information.</p>
+                        <p>The information in this catalogue is incomplete, please <a href="https://www.fmf.uni-lj.si/en/directory/742/bercic-katja/">help me fill it in</a>.</p>
 
                         <Tabs active={this.state.columns} toggleDisplay={(c) => this.toggleDisplay(c)} />
 
