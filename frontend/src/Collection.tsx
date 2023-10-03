@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 
-export default class Collection extends Component {
-    
+import type {Author as AuthorJSON } from './assets';
+
+export default class Collection extends Component<{
+    show: boolean,
+    url: string,
+    text: string,
+    authors: AuthorJSON[]
+}> {
     render() {
         return(
             <React.Fragment>
@@ -10,16 +16,15 @@ export default class Collection extends Component {
             </React.Fragment>
         );
     }
-    
 }
 
-function Author(props) {
+function Author(props: { data: AuthorJSON}) {
     const fullname = props.data.givenName + " " + props.data.familyName
     if (!(props.data.url === null)) return <a href={props.data.url} className="author text-muted">{fullname}</a>;
     else return <span className="author text-muted">{fullname}</span>
 }
 
-function Authors(props) {
+function Authors(props: { show: boolean, data: AuthorJSON[]}) {
     if ((typeof props.data !== 'undefined') && props.show) return(
         <React.Fragment>
             {props.data.map((a, i) => <React.Fragment key={i}>{!!i && ", "} <Author data={a} /></React.Fragment> )}

@@ -1,0 +1,6 @@
+{
+    "general": ["index", "id", "name", "references", "tags", "comment"],
+    "size": ["index", "id", "name", "numberOfObjects", "numberOfDatasets", "numberOfContributors", "timeToGenerate"],
+    "FAIR": ["index", "id", "name", "summaryOfFAIR", "findable", "accessible", "interoperable", "reusable"],
+    "properties": ["index", "id", "name", "collaborative", "irredundant", "searchable", "selfExplaining"]
+}

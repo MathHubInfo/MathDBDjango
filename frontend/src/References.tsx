@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Tooltip } from 'reactstrap';
+import type { Reference as ReferenceJSON, Collection as CollectionJSON } from './assets'
 
-export default class References extends Component {
+// spellchecker:words arxiv
+
+export default class References extends Component<{ value: CollectionJSON}> {
     
     render() {
         const cId = this.props.value.id;
@@ -17,9 +20,13 @@ export default class References extends Component {
     
 }
 
-class Reference extends Component {
+type ReferenceProps = {
+    reference: string;
+    value: ReferenceJSON;
+}
+class Reference extends Component<ReferenceProps, { tooltipOpen: boolean }> {
                                           
-    constructor(props) {
+    constructor(props: ReferenceProps) {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = { tooltipOpen: false };

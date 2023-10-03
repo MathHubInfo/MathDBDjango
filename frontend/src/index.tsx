@@ -5,8 +5,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const domNode = document.getElementById('root');
-const root = createRoot(domNode);
+const root = createRoot(document.getElementById('root')!);
 root.render(<App />);
 
 // If you want your app to work offline and load faster, you can change

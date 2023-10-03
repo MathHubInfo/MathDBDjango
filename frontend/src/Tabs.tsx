@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Row, Col } from 'reactstrap';
+import type { TabName } from './assets';
 
-const tabs = [
+const tabs: Array<{id: TabName, label: string}> = [
     {
         "id": "general", 
         "label": "General Information"
@@ -20,7 +21,10 @@ const tabs = [
     }
 ];
 
-export default class Tabs extends Component {
+export default class Tabs extends Component<{
+    active: TabName
+    toggleDisplay: (id: TabName) => void,
+}> {
     
     render() {
         const navButtons = tabs.map((item) => 
@@ -43,7 +47,7 @@ export default class Tabs extends Component {
     
 }
 
-function Description(props) {
+function Description(props: { value: TabName}) {
     if (props.value === "FAIR")
         return (
             <Container>

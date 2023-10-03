@@ -1,0 +1,97 @@
+{
+    "collaborative": {
+        "Header": "Collaborative",
+        "style": { "whiteSpace": "unset" }
+    },
+    "comment": {
+        "Header": "Comment",
+        "style": { "whiteSpace": "unset" }
+    },
+    "complete": {
+        "Header": "Complete"
+    },
+    "summaryOfFAIR": {
+        "Header": "Summary",
+        "style": { "whiteSpace": "unset" }
+    },
+    "findable": {
+        "Header": "F",
+        "style": { "textAlign": "center" },
+        "maxWidth": 70
+    },
+    "accessible": {
+        "Header": "A",
+        "style": { "textAlign": "center" },
+        "maxWidth": 70
+    },
+    "interoperable": {
+        "Header": "I",
+        "style": { "textAlign": "center" },
+        "maxWidth": 70
+    },
+    "reusable": {
+        "Header": "R",
+        "style": { "textAlign": "center" },
+        "maxWidth": 70
+    },
+    "id": {
+        "Header": "Id",
+        "maxWidth": 40,
+        "style": { "textAlign": "right" }
+    },
+    "index": {
+        "Header": "#",
+        "maxWidth": 30,
+        "className": "text-muted small",
+        "style": { "textAlign": "right" }
+    },
+    "irredundant": {
+        "Header": "Irredundant?",
+        "style": { "whiteSpace": "unset" }
+    },
+    "name": {
+        "Header": "Name",
+        "style": { "whiteSpace": "unset" }
+    },
+    "numberOfObjects": {
+        "Header": "# of objects",
+        "maxWidth": 150
+    },
+    "numberOfDatasets": {
+        "Header": "# of datasets",
+        "maxWidth": 150
+    },
+    "numberOfContributors": {
+        "Header": "# of contributors",
+        "maxWidth": 150
+    },
+    "objectType": {
+        "Header": "Type of objects",
+        "maxWidth": 150,
+        "style": { "whiteSpace": "unset" }
+    },
+    "provenance": {
+        "Header": "Provenance"
+    },
+    "references": {
+        "Header": "References",
+        "maxWidth": 150
+    },
+    "tags": {
+        "Header": "Tags",
+        "maxWidth": 150,
+        "style": { "whiteSpace": "unset" }
+    },
+    "searchable": {
+        "Header": "Searchable",
+        "style": { "whiteSpace": "unset" }
+    },
+    "selfExplaining": {
+        "Header": "Self-explaining",
+        "style": { "whiteSpace": "unset" }
+    },
+    "timeToGenerate": {
+        "Header": "Time to generate",
+        "maxWidth": 150
+    }
+}

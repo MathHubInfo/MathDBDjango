@@ -1,33 +1,33 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Container, Row, Col } from 'reactstrap';
-import Tabs from './Tabs.js';
+import Tabs from './Tabs.tsx';
 import './App.css';
-import newState from './data.js';
+import newState, { State } from './data.tsx';
+import { TabName } from './assets';
 
 const api = '/api/';
 
-class App extends Component {
+class App extends Component<{},  State>{
     
-    constructor(props) {
+    constructor(props: {}) {
         super(props);
         this.state = { columns: "general", tbColumns: [], tbData: [] };
         this.toggleDisplay = this.toggleDisplay.bind(this);
         
-        this.update = (selectedColumns) => {
-            const that = this;
-            // TODO: pagination
-            // the following will only show the first page of Django results;
-            fetch(api + 'collections.json').then(function(response) {
-                return response.json();
-            }).then(function(data) {
-                that.setState(newState(selectedColumns, data));
-            });
-        }
         this.update(this.state.columns)
     }
+
+    update = (selectedColumns: TabName) => {
+        const that = this;
+        fetch(api + 'collections.json').then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            that.setState(newState(selectedColumns, data));
+        });
+    }
     
-    toggleDisplay(selected) {
+    toggleDisplay(selected: TabName) {
         this.update(selected);
     }
     

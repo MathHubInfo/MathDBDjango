@@ -2,29 +2,42 @@ import React, { Component } from 'react';
 import { Tooltip } from 'reactstrap';
 import FAIR from './FAIR.json';
 
+// spellchecker:disable
 const defaultValue = {
     F: "UUUXXUXXUUUU",
     A: "UUUUUUUUUXXU",
     I: "UUUUUUUUU",
     R: "UUUUXUUUUUUU"
-};
+} as const;
+// spellchecker:enable
 
-const cellClass = (value) => {
-    if (value === "T") return "diagram-true";
-    if (value === "M") return "diagram-somewhat";
-    if (value === "F") return "diagram-false";
-    if (value === "X") return "diagram-blank";
-    if (value === "U") return "diagram-unknown";
+type FairClass = keyof typeof defaultValue
+
+const cellClass = {
+    "T": "diagram-true",
+    "M": "diagram-somewhat",
+    "F": "diagram-false",
+    "X": "diagram-blank",
+    "U": "diagram-unknown",
+} as const
+
+type DiagramClass = keyof typeof cellClass
+
+
+
+type DiagramJSON = {
+    id: string,
+    type: keyof typeof defaultValue,
+    value: string,
 }
 
-export default class Diagram extends Component {
-    
+export default class Diagram extends Component<DiagramJSON> {
     render() {
         const model = FAIR[this.props.type];
         var value = this.props.value;
         if (value === null) value = defaultValue[this.props.type];
         const rows = model.levels.map((p, i) => {
-            var meta = {
+            const meta = {
                 id: this.props.id,
                 type: this.props.type,
                 item: p
@@ -42,12 +55,17 @@ export default class Diagram extends Component {
     
 }
 
-function Row(props) {
+type Meta = {id: string; type: FairClass; item: string}
+
+function Row(props: {
+    values: string,
+    meta: Meta,
+}) {
     const levels = ["D", "A", "M"];
     const cells = props.values.split('').map((c, i) => {
         var key = props.meta.type + props.meta.item + levels[i]
-        if (c === "X") return <td key={key} className={cellClass(c)}></td>
-        else return <Cell key={key} meta = {props.meta} value={c} divId={"c" + props.meta.id + "-" + props.meta.type + props.meta.item + levels[i]} level={levels[i]} />;
+        if (c === "X") return <td key={key} className={cellClass[c]}></td>
+        else return <Cell key={key} meta={props.meta} value={c as DiagramClass} divId={"c" + props.meta.id + "-" + props.meta.type + props.meta.item + levels[i]} level={levels[i]} />;
     })
     return (
         <tr>
@@ -56,9 +74,19 @@ function Row(props) {
     );
 }
 
-class Cell extends Component {
+type CellProps = {
+    value: DiagramClass,
+    divId: string,
+    level: string,
+    meta: Meta,
+}
+
+
+class Cell extends Component<CellProps, {
+    tooltipOpen: boolean
+}> {
     
-    constructor(props) {
+    constructor(props: CellProps) {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = { tooltipOpen: false };
@@ -70,10 +98,10 @@ class Cell extends Component {
     
     render() {
         return (
-            <td className={cellClass(this.props.value)}>
+            <td className={cellClass[this.props.value]}>
                 <a className="tooltip-field" id={this.props.divId} href={"https://github.com/MathHubInfo/Documentation/wiki/Math-Databases#" + this.props.meta.type + this.props.meta.item}>&nbsp;</a>
                 <Tooltip placement="top" isOpen={this.state.tooltipOpen} target={this.props.divId} toggle={this.toggle}>
-                    {FAIR[this.props.meta.type][this.props.meta.item][this.props.level]}
+                    {(FAIR as any)[this.props.meta.type][this.props.meta.item][this.props.level]}
                 </Tooltip>
             </td>
         );
