@@ -42,6 +42,7 @@ class App extends Component {
 
                         <Tabs active={this.state.columns} toggleDisplay={(c) => this.toggleDisplay(c)} />
 
+                        
                         <ReactTable
                             data={this.state.tbData}
                             columns={this.state.tbColumns}
