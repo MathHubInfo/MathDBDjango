@@ -1,5 +1,5 @@
 # Copy node form the frontend
-FROM node:12 as frontend
+FROM node:21 as frontend
 
 # Add sources into /app/
 WORKDIR /app/frontend/
