@@ -1,4 +1,7 @@
 # MathDB Django
+
+** This project has been superseeded by https://github.com/MathBases/MathBases **
+
 [![Build Status](https://travis-ci.com/MathHubInfo/MathDBDjango.svg?branch=master)](https://travis-ci.com/MathHubInfo/MathDBDjango)
 
 A new MathDB Django Backend
